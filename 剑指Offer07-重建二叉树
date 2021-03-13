@@ -1,0 +1,29 @@
+public class Solution {
+    public TreeNode BuildTree(int[] preorder, int[] inorder) {
+        int preLength=preorder.Length;
+        return Build(preorder,inorder,0,0,preLength);
+    }
+    public TreeNode Build(int[] preorder,int[] inorder,int prestart,int instart,int length){
+        if (length==0){
+            return null;
+        }else{
+            int root=preorder[prestart];
+            TreeNode tree=new TreeNode{val=root,left=null,right=null};
+            if(length==1){
+                return tree;
+            }else{
+                int leftLength=0;
+                while(inorder[instart+leftLength]!=root){
+                    leftLength++;
+                }
+                if(leftLength>0){
+                    tree.left=Build(preorder,inorder,prestart+1,instart,leftLength);
+                }
+                if(length-leftLength-1>0){
+                    tree.right=Build(preorder,inorder,prestart+leftLength+1,instart+leftLength+1,length-leftLength-1);
+                }
+                return tree;
+            } 
+        }
+    }
+}
