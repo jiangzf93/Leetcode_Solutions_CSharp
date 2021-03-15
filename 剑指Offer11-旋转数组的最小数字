@@ -1,0 +1,29 @@
+public class Solution {
+    public int MinArray(int[] numbers) {
+        int length=numbers.Length;
+        if(numbers[0]<numbers[length-1]){
+            return numbers[0];
+        }
+        return partition(numbers,0,length-1);
+    }
+    public int partition(int[] nums,int start,int end){
+        if((end-start)==1){
+            return nums[end];
+        }else{
+            int mid=(start+end)/2;
+            if(nums[mid]>nums[start]){
+                return partition(nums,mid,end);
+            }else if(nums[mid]<nums[end]){
+                return partition(nums,start,mid);
+            }else{
+                int min=nums[start];
+                for(int i=start+1;i<=end;i++){
+                    if(nums[i]<min){
+                        min=nums[i];
+                    }
+                }
+                return min;
+            }
+        }
+    }
+}
