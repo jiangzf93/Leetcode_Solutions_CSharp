@@ -1,0 +1,21 @@
+public class Solution {
+    public int CuttingRope(int n) {
+        if(n==2) return 1;
+        if(n==3) return 2;
+        int[] partialSolution=new int[n+1];
+        partialSolution[0]=0;
+        partialSolution[1]=1;
+        partialSolution[2]=2;
+        partialSolution[3]=3;
+        for(int i=4;i<=n;i++){
+            int maxLength=0;
+            for(int j=0;j<=i/2;j++){
+                if(partialSolution[j]*partialSolution[i-j]>maxLength){
+                    maxLength=partialSolution[j]*partialSolution[i-j];
+                }
+            }
+            partialSolution[i]=maxLength;
+        }
+        return partialSolution[n];
+    }
+}
