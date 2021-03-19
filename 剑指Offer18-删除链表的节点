@@ -1,0 +1,14 @@
+public class Solution {
+    public ListNode DeleteNode(ListNode head, int val) {
+        if(head.val==val) head=head.next;
+        ListNode p=head;
+        while(p.next!=null){
+            if(p.next.val==val){
+                p.next=p.next.next;
+                break;
+            }
+            p=p.next;
+        }
+        return head;
+    }
+}
