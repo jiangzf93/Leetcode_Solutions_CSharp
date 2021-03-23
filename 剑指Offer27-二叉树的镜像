@@ -1,0 +1,9 @@
+public class Solution {
+    public TreeNode MirrorTree(TreeNode root) {
+        if(root==null) return null;
+        TreeNode newRoot=new TreeNode(){val=root.val};
+        newRoot.left=MirrorTree(root.right);
+        newRoot.right=MirrorTree(root.left);
+        return newRoot;
+    }
+}
